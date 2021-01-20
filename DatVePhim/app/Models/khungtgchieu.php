@@ -10,7 +10,7 @@ class khungtgchieu extends Model
     
 
     protected $table = 'khungtgchieus';
-    protected $fillable = ['giochieu'];
+    protected $fillable = ['giochieu','ngaychieu'];
 
     //lich chieu
     public function khungtg(){

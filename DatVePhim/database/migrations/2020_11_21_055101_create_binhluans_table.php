@@ -14,15 +14,13 @@ class CreateBinhluansTable extends Migration
     public function up()
     {
         Schema::create('binhluans', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('noidung');
             $table->integer('phim')->unsigned();;
             $table->integer('khachhang')->unsigned();;
             $table->boolean('trangthai');
             $table->timestamps();
-
             $table->foreign('phim')->references('id')->on('phims');
-            $table->foreign('khachhang')->references('id')->on('khachhangs');
+            $table->foreign('khachhang')->references('id')->on('users');
         });
     }
 

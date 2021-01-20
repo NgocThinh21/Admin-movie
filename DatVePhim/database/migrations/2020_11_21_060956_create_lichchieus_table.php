@@ -14,16 +14,16 @@ class CreateLichchieusTable extends Migration
     public function up()
     {
         Schema::create('lichchieus', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('phim')->unsigned();
             $table->integer('thoigian')->unsigned();
             $table->integer('rap')->unsigned();
-            $table->date('ngay');
             $table->timestamps();
 
             $table->foreign('phim')->references('id')->on('phims');
             $table->foreign('thoigian')->references('id')->on('khungtgchieus');
             $table->foreign('rap')->references('id')->on('raps');
+             $table->primary(['phim','thoigian','rap']);
+
         });
     }
 

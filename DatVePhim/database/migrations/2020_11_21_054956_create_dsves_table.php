@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDinhdangphimsTable extends Migration
+class CreateDsvesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateDinhdangphimsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dinhdangphims', function (Blueprint $table) {
+        Schema::create('dsves', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tendangphim');
-            $table->boolean('trangthai')->default(1);
+            $table->integer('khachhang')->unsigned();
+            $table->integer('soluong');
+            $table->datetime('ngaymua');
             $table->timestamps();
+
+            $table->foreign('khachhang')->references('id')->on('khachhangs');
+
+
         });
     }
 
@@ -28,6 +33,6 @@ class CreateDinhdangphimsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dinhdangphims');
+        Schema::dropIfExists('dsves');
     }
 }

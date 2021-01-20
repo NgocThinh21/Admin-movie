@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class lichchieu extends Model
 {
     protected $table = 'lichchieus';
-    protected $fillable = ['phim','thoigian','rap','ngay'];
+    protected $fillable = ['phim','thoigian','rap'];
     
     //rap
     public function r(){

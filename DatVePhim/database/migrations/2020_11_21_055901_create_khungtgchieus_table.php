@@ -16,6 +16,7 @@ class CreateKhungtgchieusTable extends Migration
         Schema::create('khungtgchieus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('giochieu');
+            $table->date('ngaychieu');
             $table->boolean('trangthai')->default(1);
             $table->timestamps();
         });

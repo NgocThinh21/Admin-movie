@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ghe extends Model
 {
-    use HasFactory;
+      protected $table = 'ghes';
+    protected $fillable = ['hang','cot','rap','loaighe'];
+   public function lg(){
+        return $this->belongsTo('App\Models\loaighe','loaighe','id');
+    }
+       public function r(){
+        return $this->belongsTo('App\Models\rap','rap','id');
+    }
 }

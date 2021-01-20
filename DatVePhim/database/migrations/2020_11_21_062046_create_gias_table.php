@@ -16,12 +16,13 @@ class CreateGiasTable extends Migration
         Schema::create('gias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('loaighe')->unsigned();
-            $table->integer('loaiphim')->unsigned();
+            $table->integer('phim')->unsigned();
             $table->float('gia');
+             $table->integer('trangthai')->default(1);
             $table->timestamps();
 
             $table->foreign('loaighe')->references('id')->on('loaighes');
-           $table->foreign('loaiphim')->references('id')->on('dinhdangphims');
+            $table->foreign('phim')->references('id')->on('phims');
         });
     }
 

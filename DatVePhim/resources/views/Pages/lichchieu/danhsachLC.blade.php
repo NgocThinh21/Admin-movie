@@ -56,7 +56,7 @@
       <div class="col-lg-12">
         <section class="panel">
           <header class="panel-heading">
-            CHỌN LỊCH
+            CHỌN RẠP
           </header>
           <table class="table table-striped b-t b-light">
             <thead>
@@ -136,7 +136,6 @@
   load();
   $("#xeplich").click(function(e){
     e.preventDefault();
-    alert($('#xeplicha').serialize());
     $.ajax({
      type:'POST',
      url:"{{route('themLC')}}",

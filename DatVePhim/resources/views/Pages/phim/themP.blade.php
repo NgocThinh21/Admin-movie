@@ -1,5 +1,6 @@
 @extends('Pages/admin')
 @section('content')
+<a class="btn bg-olive text-primary bg-primary" style="margin-bottom: 20px;" href="{{route('dsP')}}"></i> Danh Sách Phim</a>
 <div class="row">
             <div class="col-lg-12">
                     <section class="panel">
@@ -8,9 +9,9 @@
                         </header>
                         <div class="panel-body">
                             <div class="position-center">
-                            
                                 <form action="{{route('themP')}}"  method="POST" enctype="multipart/form-data">
-                                <!-- {{ csrf_field() }} -->    @csrf
+                                        @csrf
+
                                 <div class="form-group">
                                     <label for="exampleInput1">Tên Phim</label>
                                     <input type="" name="tenphim" class="form-control" id="exampleInput1" placeholder="Enter ">
@@ -56,15 +57,38 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Thời lượng</label>
-                                    <input type="" name="thoiluong" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <label for="exampleInputPassword1">Thời lượng (Phút)</label>
+                                    <input type="number" name="thoiluong" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
-                              
+
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Nội Dung</label>
+                                    <input type="text" name="noidung" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Độ tuổi</label>
+                                    <input type="" name="dotuoi" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Trailer</label>
                                     <input type="" name="trailer" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Ngày</label>
+                                    <input type="date" name="ngay" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
                               
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Trạng Thái</label>
+                                    <select class="form-control" name="trangthai"  id="trangthai">
+                                        <option value=0>Đang Chiếu</option>
+                                        <option value=1>Sắp Chiếu</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputFile">Hình Ảnh</label>
                                     <input type="file" name="hinhanh"  id="exampleInputPassword1">

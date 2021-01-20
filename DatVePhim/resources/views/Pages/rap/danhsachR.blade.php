@@ -1,89 +1,190 @@
 @extends('Pages/admin')
 @section('content')
-<a class="btn bg-olive text-primary bg-primary" style="margin-bottom: 20px;" href="{{route('themR')}}"></i> Thêm Rạp</a>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      DANH SÁCH RẠP
-    </div>
-    @if(session('thongbao'))
-      <div class="alert alert-success">
-        {{session('thongbao')}}
-      </div>
-     @endif 
-    <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
-      </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel" id="loadl">
         </div>
-      </div>
     </div>
-    <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
-        <thead>
-          <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
-            <th>Tên Rạp</th>
-            <th>Chi Nhánh</th>
-            <th style="width:30px;"></th>
-          </tr>
-        </thead>
-       
-        <tbody>
-        @foreach($rap as $key => $d)
-          <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$d->tenrap}}</td>
-            <th>{{$d->tl->tenchinhanh}}</th>
-            <td>
-              <a href="{{route('suaR', $d->id)}}" class="active" ui-toggle-class="">
-                <i class="fa fa-edit text-success text-active">Sửa</i>
-                </a>
-                <a href="{{route('xoaR', $d->id)}}" class="active" ui-toggle-class="">
-                <i class="fa fa-times text-danger text">Xóa</i>
-              </a>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+    <div class="col-md-4">
+        <span class="error text-enter alert alert-danger hidden"></span>
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        THÊM RẠP
+                    </header>
+                    <div class="alert alert-danger" id="loithem" hidden="true"></div>
+                    <div class="panel-body">
+                        <div class="position-center">
+                            <form action=""  method="POST" enctype="multipart/form-data" id="themr">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="hidden" name="token" value="{{csrf_token()}}"/>
+                                    <label for="exampleInput1">Tên Rạp</label>
+                                    <input type="" name="tentheloai" class="form-control" id="tenrap" placeholder="Enter ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInput1">Chi Nhánh</label>
+                                    <select class="form-control" id="chinhanh">
+                                        @foreach($chinhanh as $cn)
+                                        <option value="{{$cn->id}}">{{$cn->tenchinhanh}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                       <div class="form-group">
+                                    <label for="exampleInput1">Số Dãy</label>
+                                    <select class="form-control" name="chinhanh" id="soday">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                </div>
+                                       <div class="form-group">
+                                    <label for="exampleInput1">Số Cột</label>
+                                    <select class="form-control" name="chinhanh" id="socot">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-info" id="btnhthem">Thêm</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+        <div>
+        </div>
+
     </div>
-    <footer class="panel-footer">
-      <div class="row">
-        
-        <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">Showing 20-30 of 50 items</small>
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-  </div>
+    
 </div>
-</section>
+
+
+@include('Pages.rap.suaR')
+
+<script type="text/javascript">
+    function load(){
+        $.ajax({
+         type:'GET',
+         url:"{{route('themR')}}",
+         success: function(data){
+           $('#loadl').html(data);
+       }
+   })
+    }
+    $(document).ready(function(){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+        load();
+        $("#btnhthem").click(function(e){
+            e.preventDefault();
+            var rap = $("#tenrap").val();
+            var chinhanh = $("#chinhanh").val();
+            var soday = $("#soday").val();
+            var socot = $("#socot").val();
+
+            $.ajax({
+             type:'POST',
+             url:"{{route('themR')}}",
+             data:{tenrap:rap, chinhanh:chinhanh, socot:socot, soday:soday},
+             success: function(data)
+             {
+                if (data.errors != null) {
+                 $.each(data.errors, function(key, value){
+                    $('#loithem').show();
+                    $('#loithem').text(value);
+                })
+             }else{
+                load();
+                $('#themr').reset();
+            }           
+        }
+    })
+        })
+
+
+    })
+
+    $(document).on('click', '#sua', function(e){
+        var id= $(this).data('sua');
+        $('#chinhsua').modal('show');
+        $.ajax({
+            type:'GET',
+            url:"{{route('suaR')}}",
+            data:{id:id},
+            success: function(data){
+                @foreach ($chinhanh as $cn){
+                    if ({{$cn->id}} == data.chinhanh){
+                        document.getElementById("cn").value = "{{$cn->id}}";
+                    }
+                }
+                @endforeach
+                document.getElementById("day").value = data.soday;
+                document.getElementById("cot").value = data.socot;
+                $('#tenr').val(data.tenrap);
+                $('#id').val(data.id);
+                if (data.trangthai ==1 ) {
+                    document.getElementById("trangthai").value = "1";
+                }else {
+                    document.getElementById("trangthai").value = "0";
+
+                }
+            }
+        })
+    })
+    $('#luurap').on('click', function(e){
+       e.preventDefault();
+       var id = $('#id').val();
+       var r = $('#tenr').val();
+        var cn = $('#cn').val();
+        var d = $('#day').val();
+        var c = $('#cot').val();
+       var tt = $('#trangthai').val();
+       $.ajax({
+        type:'POST',
+        url:"{{route('suaR')}}",
+        data:{id:id,tenrap:r, chinhanh:cn, soday:d, socot:c, trangthai:tt},
+        success: function(data){
+            if (data.errors != null) {
+             alert(data.errors);
+         }else{
+            load();
+            $('#suar').reset();
+        }    
+    }
+})
+   })
+    $(document).on('click','#xoa', function(){
+        var id= $(this).data('xoa');
+        if (confirm("Có Chắc Muốn Xóa ???")) {
+            $.ajax({
+                type:'GET',
+                url:"{{route('xoaR')}}",
+                data:{id:id},
+                success: function(data){
+                    load();
+                }
+            })
+        }
+    })
+
+
+
+</script> 
 @stop
+

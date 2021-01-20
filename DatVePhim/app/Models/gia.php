@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class gia extends Model
 {
-    use HasFactory;
+    protected $table = 'gias';
+    protected $fillable = ['loaighe','phim','gia'];
+   public function lg(){
+        return $this->hasMany('App\Models\phim','phim','id');
+    }
+       public function r(){
+        return $this->hasMany('App\Models\ghe','loaighe','id');
+    }
 }

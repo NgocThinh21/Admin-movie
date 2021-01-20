@@ -21,13 +21,15 @@ class CreateVesTable extends Migration
             $table->integer('ghe')->unsigned();
             $table->integer('gia')->unsigned();
             $table->boolean('trangthai')->default(1);
+            $table->integer('dsve')->unsigned();
             $table->timestamps();
 
-            $table->foreign('phim')->references('id')->on('phims');
-            $table->foreign('rap')->references('id')->on('raps');
-            $table->foreign('thoigian')->references('id')->on('lichchieus');
+            $table->foreign('phim')->references('phim')->on('lichchieus');
+            $table->foreign('rap')->references('rap')->on('lichchieus');
+            $table->foreign('thoigian')->references('thoigian')->on('lichchieus');
             $table->foreign('ghe')->references('id')->on('ghes');
             $table->foreign('gia')->references('id')->on('gias');
+            $table->foreign('dsve')->references('id')->on('dsves');
 
         });
     }

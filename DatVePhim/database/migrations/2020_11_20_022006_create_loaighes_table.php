@@ -15,7 +15,7 @@ class CreateLoaighesTable extends Migration
     {
         Schema::create('loaighes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tenloaid');
+            $table->string('ten');
             $table->boolean('trangthai')->default(1);
             $table->timestamps();
         });

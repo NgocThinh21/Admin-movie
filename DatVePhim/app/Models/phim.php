@@ -8,7 +8,6 @@ class phim extends Model
 {
     protected $table = 'phims';
     protected $fillable = ['tenphim','hinhanh','thoiluong','trailer','daodien','dienvien','theloai','nsx','quocgia','trangthai'];
-  
     //public $timestamps =false;
  
     //the loai
@@ -35,5 +34,9 @@ class phim extends Model
     public function phim(){
 
         return $this->hasMany('App\Models\lichchieu','phim','id'); 
+    }
+        public function dg(){
+
+        return $this->hasMany('App\Models\danhgia','phim','id'); 
     }
 }

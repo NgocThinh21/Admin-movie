@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class rap extends Model
 {
     protected $table = 'raps';
-    protected $fillable = ['tentap','chinhanh'];
+    protected $fillable = ['tenrap','chinhanh','soday','socot'];
     
-    public function tl(){
+    public function r(){
         return $this->belongsTo('App\Models\chinhanh','chinhanh','id');
     }
 
@@ -19,4 +19,9 @@ class rap extends Model
 
         return $this->hasMany('App\Models\lichchieu','rap','id'); 
     }
+     public function ghe(){
+
+        return $this->hasMany('App\Models\ghe','rap','id'); 
+    }
 }
+

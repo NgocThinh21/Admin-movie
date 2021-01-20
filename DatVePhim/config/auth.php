@@ -12,9 +12,9 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
+//  tui chỉnh ch^^ổ n``ay th``anh api akk có khi nó l^lo63o ch^^ổ n``ay
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -46,6 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'nhanvien' => [
+            'driver' => 'session',
+            'provider' => 'nhanviens',
+        ],
     ],
 
     /*
@@ -75,6 +79,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'nhanviens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\nhanvien::class,
+        ],
     ],
 
     /*

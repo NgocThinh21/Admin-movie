@@ -12,6 +12,6 @@ class chinhanh extends Model
     
     public function rap(){
 
-        return $this->hasMany('App\Models\raps','chinhanh','id'); 
+        return $this->hasMany('App\Models\rap','chinhanh','id'); 
     }
 }
